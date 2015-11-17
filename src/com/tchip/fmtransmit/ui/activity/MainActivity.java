@@ -1,7 +1,12 @@
-package com.tchip.fmtransmit;
+package com.tchip.fmtransmit.ui.activity;
 
 import com.tchip.fmtransmit.Constant;
 import com.tchip.fmtransmit.R;
+import com.tchip.fmtransmit.Constant.FMTransmit;
+import com.tchip.fmtransmit.Constant.Path;
+import com.tchip.fmtransmit.R.anim;
+import com.tchip.fmtransmit.R.id;
+import com.tchip.fmtransmit.R.layout;
 import com.tchip.fmtransmit.model.Typefaces;
 import com.tchip.fmtransmit.util.SettingUtil;
 import com.tchip.fmtransmit.view.SwitchButton;
