@@ -2,11 +2,6 @@ package com.tchip.fmtransmit.ui.activity;
 
 import com.tchip.fmtransmit.Constant;
 import com.tchip.fmtransmit.R;
-import com.tchip.fmtransmit.Constant.FMTransmit;
-import com.tchip.fmtransmit.Constant.Path;
-import com.tchip.fmtransmit.R.anim;
-import com.tchip.fmtransmit.R.id;
-import com.tchip.fmtransmit.R.layout;
 import com.tchip.fmtransmit.model.Typefaces;
 import com.tchip.fmtransmit.util.SettingUtil;
 import com.tchip.fmtransmit.view.SwitchButton;
@@ -25,7 +20,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -34,7 +28,6 @@ import android.provider.Settings;
 
 public class MainActivity extends Activity {
 
-	private RelativeLayout layoutBack;
 	private TextView textHint;
 	private SeekBar fmSeekBar;
 
