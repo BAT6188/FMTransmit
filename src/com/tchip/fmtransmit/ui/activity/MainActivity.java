@@ -33,9 +33,7 @@ public class MainActivity extends Activity {
 
 	private Button fmFreqDecrease, fmFreqIncrease;
 
-	/*
-	 * 接受weather发送的消息广播
-	 */
+	/** 接受语音发送的消息广播 **/
 	private FMReceiver fmReceiver;
 
 	public class FMReceiver extends BroadcastReceiver {
@@ -46,7 +44,6 @@ public class MainActivity extends Activity {
 				switchFm.setChecked(true);
 			} else if (action.equals("com.tchip.FM_CLOSE_SYSTEMUI")) {
 				switchFm.setChecked(false);
-				;
 			}
 		}
 	}
@@ -80,13 +77,12 @@ public class MainActivity extends Activity {
 	private SwitchButton switchFm;
 
 	private void initialLayout() {
-		// 开关
-		switchFm = (SwitchButton) findViewById(R.id.switchFm);
 
 		textHint = (TextView) findViewById(R.id.textHint);
 		textHint.setTypeface(Typefaces.get(this, Constant.Path.FONT
 				+ "Font-Helvetica-Neue-LT-Pro.otf"));
 
+		switchFm = (SwitchButton) findViewById(R.id.switchFm); // 开关
 		switchFm.setChecked(isFmTransmitOn());
 		switchFm.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -102,7 +98,6 @@ public class MainActivity extends Activity {
 				sendBroadcast(new Intent(
 						isChecked ? "com.tchip.FM_OPEN_CARLAUNCHER"
 								: "com.tchip.FM_CLOSE_CARLAUNCHER"));
-
 			}
 		});
 
