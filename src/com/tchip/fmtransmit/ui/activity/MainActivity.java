@@ -3,6 +3,7 @@ package com.tchip.fmtransmit.ui.activity;
 import com.tchip.fmtransmit.Constant;
 import com.tchip.fmtransmit.R;
 import com.tchip.fmtransmit.model.Typefaces;
+import com.tchip.fmtransmit.util.MyLog;
 import com.tchip.fmtransmit.util.SettingUtil;
 import com.tchip.fmtransmit.view.SwitchButton;
 
@@ -40,10 +41,22 @@ public class MainActivity extends Activity {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			String action = intent.getAction();
-			if (action.equals("com.tchip.FM_OPEN_SYSTEMUI")) {
+			if (action.equals(Constant.Broadcast.NAVIBAR_OPEN_FM)) {
 				switchFm.setChecked(true);
-			} else if (action.equals("com.tchip.FM_CLOSE_SYSTEMUI")) {
+			} else if (action.equals(Constant.Broadcast.NAVIBAR_CLOSE_FM)) {
 				switchFm.setChecked(false);
+			} else if (action.equals(Constant.Broadcast.VOICE_SET_FM)) {
+				switchFm.setChecked(SettingUtil
+						.isFmTransmitOn(MainActivity.this));
+
+				Bundle extras = intent.getExtras();
+				if (extras != null) {
+					int freq = Integer.parseInt(extras.getString("freq"));
+					MyLog.v("[FMReceiver]VOICE_SET_FM:" + freq);
+					fmSeekBar.setProgress(freq / 10 - 875);
+					textHint.setText("  " + freq / 100.0f + "MHz");
+				}
+
 			}
 		}
 	}
@@ -62,8 +75,9 @@ public class MainActivity extends Activity {
 
 		fmReceiver = new FMReceiver();
 		IntentFilter filter = new IntentFilter();
-		filter.addAction("com.tchip.FM_OPEN_SYSTEMUI");
-		filter.addAction("com.tchip.FM_CLOSE_SYSTEMUI");
+		filter.addAction(Constant.Broadcast.NAVIBAR_OPEN_FM);
+		filter.addAction(Constant.Broadcast.NAVIBAR_CLOSE_FM);
+		filter.addAction(Constant.Broadcast.VOICE_SET_FM);
 		registerReceiver(fmReceiver, filter);
 	}
 

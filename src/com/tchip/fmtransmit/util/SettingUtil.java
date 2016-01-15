@@ -1,35 +1,17 @@
 package com.tchip.fmtransmit.util;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.util.Enumeration;
 
 import com.tchip.fmtransmit.Constant;
 
-import android.app.KeyguardManager;
-import android.app.KeyguardManager.KeyguardLock;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.location.LocationManager;
-import android.net.Uri;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
-import android.os.PowerManager;
 import android.provider.Settings;
-import android.provider.Settings.SettingNotFoundException;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 
 public class SettingUtil {
@@ -84,14 +66,13 @@ public class SettingUtil {
 	 * @param frequency
 	 */
 	public static void setFmFrequency(Context context, int frequency) {
-		if (frequency >= 8750 || frequency <= 10800) {
+		if (frequency >= 8750 && frequency <= 10800) {
 			Settings.System.putString(context.getContentResolver(),
 					Constant.FMTransmit.SETTING_CHANNEL, "" + frequency);
 
 			SaveFileToNode(nodeFmChannel, String.valueOf(frequency));
 			MyLog.v("[SettingUtil]:Set FM Frequency success:" + frequency
 					/ 100.0f + "MHz");
-
 		}
 	}
 
