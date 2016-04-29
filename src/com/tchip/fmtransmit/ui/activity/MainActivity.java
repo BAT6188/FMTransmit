@@ -47,7 +47,7 @@ public class MainActivity extends Activity {
 				switchFm.setChecked(false);
 			} else if (action.equals(Constant.Broadcast.VOICE_SET_FM)) {
 				switchFm.setChecked(SettingUtil
-						.isFmTransmitOn(MainActivity.this));
+						.isFmTransmitOnSetting(MainActivity.this));
 
 				Bundle extras = intent.getExtras();
 				if (extras != null) {
@@ -56,7 +56,6 @@ public class MainActivity extends Activity {
 					fmSeekBar.setProgress(freq / 10 - 875);
 					textHint.setText("  " + freq / 100.0f + "MHz");
 				}
-
 			}
 		}
 	}

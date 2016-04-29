@@ -23,6 +23,7 @@
             android:textSize="30sp" />
 
         <com.tchip.fmtransmit.view.SwitchButton
+            android:visibility="gone"
             android:id="@+id/switchFm"
             style="@style/SwitchButtonStyle"
             android:layout_alignParentRight="true"

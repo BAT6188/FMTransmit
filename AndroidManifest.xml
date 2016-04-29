@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tchip.fmtransmit"
     android:versionCode="1"
-    android:versionName="2016.01.15-10:15" >
+    android:versionName="2016.04.29-16:15" >
 
     <uses-sdk
         android:minSdkVersion="14"

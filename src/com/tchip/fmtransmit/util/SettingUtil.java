@@ -1,9 +1,12 @@
 package com.tchip.fmtransmit.util;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -32,7 +35,7 @@ public class SettingUtil {
 	public static File nodeFmChannel = new File(
 			"/sys/devices/platform/mt-i2c.1/i2c-1/1-002c/setch_qn8027");
 
-	public static boolean isFmTransmitOn(Context context) {
+	public static boolean isFmTransmitOnSetting(Context context) {
 		boolean isFmTransmitOpen = false;
 		String fmEnable = Settings.System.getString(
 				context.getContentResolver(),
@@ -45,6 +48,10 @@ public class SettingUtil {
 			}
 		}
 		return isFmTransmitOpen;
+	}
+
+	public static boolean isFmtransmitOnNode() {
+		return getFileInt(nodeFmEnable) == 1;
 	}
 
 	/**
@@ -103,6 +110,24 @@ public class SettingUtil {
 		} else {
 			Log.e(Constant.TAG, "SaveFileToNode:File:" + file + "not exists");
 		}
+	}
+
+	public static int getFileInt(File file) {
+		if (file.exists()) {
+			try {
+				InputStream inputStream = new FileInputStream(file);
+				InputStreamReader inputStreamReader = new InputStreamReader(
+						inputStream);
+				int ch = 0;
+				if ((ch = inputStreamReader.read()) != -1)
+					return Integer.parseInt(String.valueOf((char) ch));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return 0;
 	}
 
 }
